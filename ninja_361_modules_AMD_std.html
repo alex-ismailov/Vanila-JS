@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Стандарт AMD</h1>
+        <h2>ninja_361_modules_AMD_std.js</h2>
+        <h3>Кликни по экрану, после открой консоль</h3>
+        <p>В стандарте AMD определена функция define() которой передаются:</p>
+        <ul>
+            <li>Индентификатор вновь созданного модуля, необходим чтобы затребовать модлуль из других частей системы</li>
+            <li>Список зависимостей к текущему модулю</li>
+            <li>Фабричная функция инициализирующая модуль, который передается в качестве аргументов используемые модули</li>
+        </ul>
+        <pre>
+            define('MouseCounterModule', ['./dependencies/jquery-3.4.1.min.js'], $ => {
+                let numClick = 0;
+                const cilckHandle = () => {
+                    console.log(`numClick: ${++numClick}`);
+                };
+            
+                return {
+                    countClick: () => {
+                        $(document).on('click', cilckHandle);
+                    }
+                };
+            });
+        </pre>
+
+    </div>
+
+    <script src="./ninja_361_modules_AMD_std.js"></script>
+</body>
+</html>
