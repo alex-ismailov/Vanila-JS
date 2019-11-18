@@ -37,6 +37,8 @@
         }
 
         // example taken from sicp-ru p.50
+        // ************************************************************************************
+        // ***** i think Tail call optimization in the three bottom examples doesn`t work *****
         function iter2Fact(n) {
             function facIter(product, counter, max_count ) {
                 if (counter > max_count) {
