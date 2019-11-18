@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>factorialAndItsDuration</title>
+</head>
+<body>
+    <h1>See the result in the console</h1>
+<script>
+    function factorialAndItsDuration (params) {
+        let start;
+        let end;
+        let res;
+        let iterDuration;
+        let iter2Duration;
+        let iter3Duration;
+        let recurDuration;
+        
+        function recurFact(n) {
+            if (n < 1 ) {
+                return 'Zero have not factorial';
+            }
+            return (n === 1) ? 1 : (n * recurFact(n - 1));
+        }
+
+        function iterFact(n) {
+            if (n < 1 ) {
+                return 'Zero have not factorial';
+            }
+            if (n === 1) {
+                return n;
+            }
+
+            let res = 1;
+            for (let i = 1; i <= n; i += 1) {
+                res *= i;
+            }
+            return res;
+        }
+
+        // example taken from sicp-ru p.50
+        function iter2Fact(n) {
+            function facIter(product, counter, max_count ) {
+                if (counter > max_count) {
+                    return product;
+                }
+                return facIter((counter * product), (counter + 1), max_count);
+            }
+
+            return facIter(1, 1, n);
+        }
+
+        function iter3Fact(n, product = 1, counter = 1) {
+            if (counter > n) {
+                return product;
+            }
+
+            return iter3Fact(n, (product * counter), (counter + 1));
+        }
+
+        params.forEach(n => {
+            console.log('**************************************');
+            start = performance.now();
+            res = recurFact(n);
+            end = performance.now();
+            recurDuration = end - start;
+            console.log(`recurFact(${n}) = ${res}; recurDuration = ${recurDuration.toFixed(5)} us`);
+
+            start = performance.now();
+            res = iterFact(n);
+            end = performance.now();
+            iterDuration = end - start;
+            console.log(`iterFact(${n}) = ${res}; iterDuration = ${iterDuration.toFixed(5)} us`);
+
+            start = performance.now();
+            res = iter2Fact(n);
+            end = performance.now();
+            iter2Duration = end - start;
+            console.log(`iter2Fact(${n}) = ${res}; iter2Duration = ${iter2Duration.toFixed(5)} us`);
+
+            start = performance.now();
+            res = iter3Fact(n);
+            end = performance.now();
+            iter3Duration = end - start;
+            console.log(`iter3Fact(${n}) = ${res}; iter3Duration = ${iter3Duration.toFixed(5)} us`);
+        });
+    }
+
+    // Test drive
+    const params = [1, 20, 100, 1000];
+    factorialAndItsDuration(params);
+
+
+</script>
+</body>
+</html>
