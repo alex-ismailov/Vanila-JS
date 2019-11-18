@@ -56,6 +56,17 @@
             return iter3Fact(n, (product * counter), (counter + 1));
         }
 
+        // example taken from the hexlet course
+        function iter4Fact(n) {
+            function iter(counter, acc) {
+                if (counter === 1) {
+                    return acc;
+                }
+                return iter(counter - 1, counter * acc);
+            }
+            return iter(n, 1);
+        }
+
         params.forEach(n => {
             console.log('**************************************');
             start = performance.now();
@@ -77,6 +88,11 @@
             res = iter3Fact(n);
             end = performance.now();
             console.log(`iter3Fact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
+
+            start = performance.now();
+            res = iter4Fact(n);
+            end = performance.now();
+            console.log(`iter4Fact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
         });
     }
 
