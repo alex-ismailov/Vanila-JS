@@ -13,10 +13,6 @@
         let start;
         let end;
         let res;
-        let iterDuration;
-        let iter2Duration;
-        let iter3Duration;
-        let recurDuration;
         
         function recurFact(n) {
             if (n < 1 ) {
@@ -65,31 +61,27 @@
             start = performance.now();
             res = recurFact(n);
             end = performance.now();
-            recurDuration = end - start;
-            console.log(`recurFact(${n}) = ${res}; recurDuration = ${recurDuration.toFixed(5)} us`);
+            console.log(`recurFact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
 
             start = performance.now();
             res = iterFact(n);
             end = performance.now();
-            iterDuration = end - start;
-            console.log(`iterFact(${n}) = ${res}; iterDuration = ${iterDuration.toFixed(5)} us`);
+            console.log(`iterFact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
 
             start = performance.now();
             res = iter2Fact(n);
             end = performance.now();
-            iter2Duration = end - start;
-            console.log(`iter2Fact(${n}) = ${res}; iter2Duration = ${iter2Duration.toFixed(5)} us`);
+            console.log(`iter2Fact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
 
             start = performance.now();
             res = iter3Fact(n);
             end = performance.now();
-            iter3Duration = end - start;
-            console.log(`iter3Fact(${n}) = ${res}; iter3Duration = ${iter3Duration.toFixed(5)} us`);
+            console.log(`iter3Fact(${n}) = ${res}; duration = ${(end - start).toFixed(5)} us`);
         });
     }
 
     // Test drive
-    const params = [1, 20, 100, 1000];
+    const params = [1, 20, 100, 1000, 5000, 7000];
     factorialAndItsDuration(params);
 
 
