@@ -8,22 +8,21 @@
 </head>
 <body>
     <script>
-        const smallestDivisor = (num) => {
+        function smallestDivisor(num) {
             // BEGIN (write your solution here)
             let divisor = 2;
-            let counter = 1;
-            
             if (num === 1) {
                 return num;
             }
-            
+            if (num < 1) {
+                return NaN;
+            }
             while ((num % divisor) !== 0) {
                 divisor += 1;
             }
-
             return divisor;
             // END
-        };
+        }
 
         // Test drive smallestDivisor
         console.log('****** smallestDivisor ******');
