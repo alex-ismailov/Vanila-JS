@@ -8,14 +8,12 @@
 </head>
 <body>
     <script>
-        let a = 4;
-        a -= 8 - a;
-        console.log(a);
+        const isRightNum = (num) => {
+        const res = (num > 3) && (num ** 2 < 26) && (num !== 5);
+            return res;
+        };
 
-        let x = 5;
-        let y = 10;
-        console.log(x++ + ++y);
-
+        console.log(isRightNum(4)); // true
     </script>
 </body>
 </html>

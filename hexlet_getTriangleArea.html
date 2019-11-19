@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>getTriangleArea</title>
+</head>
+<body>
+<script>
+    function getTriangleArea(h, b) {
+        // if (h === 0 || b === 0) {
+        //     return 0;
+        // }
+        return (1 / 2) * h * b;
+    }
+
+    //test
+    console.log(`getTriangleArea(0, 25) = ${getTriangleArea(0, 25)}`);
+    console.log(`getTriangleArea(0, 0) = ${getTriangleArea(0, 0)}`);
+    console.log(`getTriangleArea(5, 25) = ${getTriangleArea(5, 25)}`);
+    console.log(`getTriangleArea(15, 12) = ${getTriangleArea(15, 12)}`);
+
+</script>
+</body>
+</html>
+
+squares.js
+Реализуйте функцию square, которая возвращает квадрат числа.
+Реализуйте функцию sumOfSquares, которая возвращает сумму квадратов двух чисел.
+Реализуйте функцию squareSumOfSquares, которая возвращает квадрат суммы квадратов двух чисел.
+Примеры работы функций:
+
+square(5); // 25
+square(10); // 100
+sumOfSquares(5, 10); // 125
+sumOfSquares(10, -9); // 181
+squareSumOfSquares(1, 1); // 4
+squareSumOfSquares(2, 3); // 169
+Обратите внимание на то, что самостоятельно вызывать их не надо. Это делает проверяющая система в файле __tests__/squares.tests.js
+
+Подсказки
+Функция square может быть использована внутри sumOfSquares
+Функция sumOfSquares может быть использована внутри squareSumOfSquares
