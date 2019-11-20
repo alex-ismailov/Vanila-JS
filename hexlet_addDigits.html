@@ -16,7 +16,7 @@
     * 1 + 1 = 2
     * Result: 2
     */
-
+    
     function length(str) {
         return str.length;
     }
@@ -26,20 +26,21 @@
         let numStrLength = length(numStr);
         let res = 0;
         if (numStrLength === 1) {
-            return  num;
+            return num;
         }
         while (numStrLength > 1) {
             for (let i = 0; i < numStrLength; i += 1) {
                 res += Number(numStr[i]);
             }
             if (length(String(res)) === 1) {
-                return res; // Чтобы выйти из цикла
+                numStrLength = 1;
             } else {
                 numStr = String(res);
                 numStrLength = length(String(res));
                 res = 0;
             }
         }
+        return res;
     }
     
     // test``
