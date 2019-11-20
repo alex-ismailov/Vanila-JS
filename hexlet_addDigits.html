@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>addDigits</title>
+    <title>myAddDigits</title>
 </head>
 <body>
 <script>
@@ -21,7 +21,7 @@
         return str.length;
     }
 
-    function addDigits(num) {
+    function myAddDigits(num) {
         let numStr = String(num);
         let numStrLength = length(numStr);
         let res = 0;
@@ -42,12 +42,38 @@
         }
         return res;
     }
+
+// ************************************
+// ******** Teacher`s solution ********
+    function sum(str) {
+        let result = 0;
+        for (let i = 0; i < length(str); i += 1) {
+            result += Number(str[i]);
+        }
+        return result
+    }
+
+    function addDigits(num) {
+        let result = num;
+        while (result >= 10) {
+            result = sum(String(result));
+        }
+        return result;
+    }
     
-    // test``
+    // myAddDigits function testing
+    [0, 1, 9, 10, 19, 38, 1259].forEach(number => {
+        console.log(`myAddDigits(${number}) = ${myAddDigits(number)}`);
+        console.log('------------------');
+    });
+
+    // addDigits function testing, teachers`s solution
+    console.log('teachers`s solution\n------------------');
     [0, 1, 9, 10, 19, 38, 1259].forEach(number => {
         console.log(`addDigits(${number}) = ${addDigits(number)}`);
         console.log('------------------');
     });
+
 
 </script>
 </body>
