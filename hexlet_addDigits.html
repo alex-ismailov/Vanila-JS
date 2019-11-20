@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>addDigits</title>
+</head>
+<body>
+<script>
+    /*
+    * Implement and export the default addDigits function, which works as follows:
+    * Given a non-negative integer num. Add all the numbers included in it until there is only one digit left.
+    * For number 38, the process will look like this:
+    * 3 + 8 = 11
+    * 1 + 1 = 2
+    * Result: 2
+    */
+
+    function length(str) {
+        return str.length;
+    }
+
+    function addDigits(num) {
+        let numStr = String(num);
+        let numStrLength = length(numStr);
+        let res = 0;
+        if (numStrLength === 1) {
+            return  num;
+        }
+        while (numStrLength > 1) {
+            for (let i = 0; i < numStrLength; i += 1) {
+                res += Number(numStr[i]);
+            }
+            if (length(String(res)) === 1) {
+                return res; // Чтобы выйти из цикла
+            } else {
+                numStr = String(res);
+                numStrLength = length(String(res));
+                res = 0;
+            }
+        }
+    }
+    
+    // test``
+    [0, 1, 9, 10, 19, 38, 1259].forEach(number => {
+        console.log(`addDigits(${number}) = ${addDigits(number)}`);
+        console.log('------------------');
+    });
+
+</script>
+</body>
+</html>
