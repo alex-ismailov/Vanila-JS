@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    const expt = (b, n) => {
+        if (n === 0) {
+            return 1;
+        }
+        return b * expt(b, n - 1);
+    };
+
+    // testing
+    const numbers = [[2, 2], [2, 3], [10, 10]];
+    numbers.forEach(elem => {
+        console.log(`expt(${elem[0]}, ${elem[1]}) = ${expt(elem[0], elem[1])}`);
+    });
+
+</script>
+</body>
+</html>
