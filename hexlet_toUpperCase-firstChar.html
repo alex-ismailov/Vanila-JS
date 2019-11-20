@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>firstChar toUpperCase</title>
+</head>
+<body>
+<script>
+    const length = str => str.length;
+    const toUpperCase = str => str.toUpperCase();
+
+    const firstCharInStrToUpperCase = (str) => {
+        const strLength = length(str);
+        let strRes = '';
+        for (let i = 0; i < strLength; i += 1) {
+            if (str[i] !== toUpperCase(str[i]) && (str[i - 1] === ' ' || str[i - 1] === undefined)) {
+                strRes += toUpperCase(str[i]);
+                console.log('func worked');
+            } else {
+                strRes += str[i];
+            }
+        }
+        return strRes;
+    };
+
+    ['a', 'abc', 'abc d efg', 'hello world', 'Hello world'].forEach(str => {
+        console.log(`--> ${str}; after firstCharInStrToUpperCase function --> ${firstCharInStrToUpperCase(str)}`);
+    });
+
+</script>
+</body>
+</html>

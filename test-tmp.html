@@ -8,13 +8,15 @@
 </head>
 <body>
     <script>
-        function length(str) {
-            return str.length;
-        }
+    const squareOfSum = (a, b) => {
+        // const result = (a * a) + (2 * a * b) + (b * b);
+        const result = (a + b) * 2;
+        // const result = (4 * a * b);
+        console.log(result);
+        return result;
+    };
 
-
-        console.log(length('abc'));
-
+    console.log(squareOfSum(2, 2)); // 16
 
     </script>
 </body>
