@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exponentiation recur & iter proc</title>
+</head>
+<body>
+<script>
+    const exptRecurProc = (b, n) => {
+        if (n === 0) {
+            return 1;
+        }
+        return b * exptRecurProc(b, n - 1);
+    };
+
+    const exptIterProc = (b, n) => {
+        let acc = 1;
+        for (let i = n; i >= 1; i -= 1) {
+            acc *= b;
+        }
+        return acc;
+    };
+
+    // testing
+    const numbers = [[2, 2], [2, 3], [10, 3], [9, 17]];
+    let start;
+    let end;
+    let res;
+    
+    // exptIterProc testing
+    console.log('*** exptIterProc testing ***');
+    numbers.forEach(elem => {
+        start = performance.now();
+        res = exptIterProc(elem[0], elem[1]);
+        end = performance.now();
+        console.log(`exptIterProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
+        console.log('--------------------------------');
+    });
+
+    // exptRecurProc testing
+    console.log('*** exptRecurProc testing ***');
+    numbers.forEach(elem => {
+        start = performance.now();
+        res = exptRecurProc(elem[0], elem[1]);
+        end = performance.now();
+        console.log(`exptRecurProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
+        console.log('--------------------------------');
+    });
+
+
+</script>
+</body>
+</html>
