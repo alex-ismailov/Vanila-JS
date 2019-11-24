@@ -17,37 +17,69 @@
 
     const exptIterProc = (b, n) => {
         let acc = 1;
-        for (let i = n; i >= 1; i -= 1) {
+        for (let i = n; i > 0; i -= 1) {
             acc *= b;
         }
         return acc;
     };
 
+
+    const exptFastIterProc = (b, n) => {
+        let acc = b;
+        while (n > 1) {
+            if ((n % 2) === 0) {
+                // return ...
+                b *=  (b / 2);
+                console.log(`in if acc = ${b}`);
+                console.log(`in if n = ${n}`);
+                n /= 2;
+                
+            } else {
+                b *= b;
+                console.log(`in else acc = ${b}`);
+                console.log(`in else n = ${n}`);
+                n -= 1;
+            }
+        }
+        return b;
+    };
+
+
     // testing
-    const numbers = [[2, 2], [2, 3], [10, 3], [9, 17]];
+    const numbers = [[2, 2], [4, 4], [2, 3], [3, 3], [10, 3], [10, 4], [10, 7], [9, 17]];
     let start;
     let end;
     let res;
-    
-    // exptIterProc testing
-    console.log('*** exptIterProc testing ***');
-    numbers.forEach(elem => {
-        start = performance.now();
-        res = exptIterProc(elem[0], elem[1]);
-        end = performance.now();
-        console.log(`exptIterProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
-        console.log('--------------------------------');
-    });
 
-    // exptRecurProc testing
-    console.log('*** exptRecurProc testing ***');
+    // exptFastIterProc testing
+    console.log('*** exptFastIterProc testing ***');
     numbers.forEach(elem => {
         start = performance.now();
-        res = exptRecurProc(elem[0], elem[1]);
+        res = exptFastIterProc(elem[0], elem[1]);
         end = performance.now();
-        console.log(`exptRecurProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
+        console.log(`exptFastIterProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
         console.log('--------------------------------');
     });
+    
+    // // exptIterProc testing
+    // console.log('*** exptIterProc testing ***');
+    // numbers.forEach(elem => {
+    //     start = performance.now();
+    //     res = exptIterProc(elem[0], elem[1]);
+    //     end = performance.now();
+    //     console.log(`exptIterProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
+    //     console.log('--------------------------------');
+    // });
+
+    // // exptRecurProc testing
+    // console.log('*** exptRecurProc testing ***');
+    // numbers.forEach(elem => {
+    //     start = performance.now();
+    //     res = exptRecurProc(elem[0], elem[1]);
+    //     end = performance.now();
+    //     console.log(`exptRecurProc(${elem[0]}, ${elem[1]}) ---> duration: ${(end - start).toFixed(5)} ---> res = ${res}`);
+    //     console.log('--------------------------------');
+    // });
 
 
 </script>
