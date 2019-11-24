@@ -21,8 +21,9 @@
     */
     const sqrtNyuton = (n) => {
         let guess = 1;
+        const minDiff = 0.001;
         const isGoodEnough = (guess, n) => {
-            return (Math.abs((guess**2) - n) < 0.001);
+            return (Math.abs((guess**2) - n) < minDiff);
         };
         const improve = (guess, n) => {
             return average(guess, (n / guess));
@@ -45,10 +46,11 @@
         ul.appendChild(li);
     });
 
+    // Inner function testing
     try {
         console.log(average(2, 2));
     } catch(e) {
-        console.log(`error message: ${e}`);
+        console.log(`Error message from inner function testing: ${e}`);
     }
 
 </script>
