@@ -1,0 +1,18 @@
+{
+  "name": "Vanila-JS",
+  "version": "0.0.0",
+  "description": "JS experiments",
+  "main": "index.js",
+  "repository": "https://github.com/alex-ismailov/Vanila-JS",
+  "author": "alex-ismailov <alexander.is.dev@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "eslint": "eslint"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.7.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2"
+  }
+}
