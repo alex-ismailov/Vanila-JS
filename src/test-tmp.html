@@ -8,15 +8,27 @@
 </head>
 <body>
     <script>
-    const squareOfSum = (a, b) => {
-        // const result = (a * a) + (2 * a * b) + (b * b);
-        const result = (a + b) * 2;
-        // const result = (4 * a * b);
-        console.log(result);
-        return result;
-    };
 
-    console.log(squareOfSum(2, 2)); // 16
+        const searchMin = (a, b, c) => {
+            let minNum = a;
+            if(b < minNum) {
+                minNum = b;
+            }
+            if (c < minNum) {
+                minNum = c;
+            }
+            return minNum;
+        };
+
+        [
+            [1, 2, 3],
+            [1, 3, 2],
+            [2, 1, 3],
+            [3, 2, 1],
+            [3, 1, 2],
+        ].forEach((el) => {
+            console.log(`min number of ${el[0]} - ${el[1]} - ${el[2]} is ${searchMin(el[0], el[1], el[2])}`);
+        });
 
     </script>
 </body>
