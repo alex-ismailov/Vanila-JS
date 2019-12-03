@@ -4,16 +4,16 @@
 function whatsMyContext() {
     return this;
 }
-document.write('Call like function in "use strict" - whatsMyContext(): ' + whatsMyContext() + '<br>');
+console.log('Call like function in "use strict" - whatsMyContext(): ' + whatsMyContext());
 
 let getMyThis = whatsMyContext;
-document.write('Call like function - getMyThis(): ' + getMyThis() + '<br>');
+console.log('Call like function - getMyThis(): ' + getMyThis());
 
 // *** Call like method ***
 const ninja1 = {
     getMyThis: whatsMyContext
 };
-document.write('Call like method - ninja1.getMyThis() === ninja1: ' + (ninja1.getMyThis() === ninja1) + '<br>');
+console.log('Call like method - ninja1.getMyThis() === ninja1: ' + (ninja1.getMyThis() === ninja1));
 
 // *** Call like constructor ***
 function Ninja() {
@@ -24,7 +24,7 @@ function Ninja() {
 
 const ninja3 = new Ninja();
 const ninja4 = new Ninja();
-document.write('ninja3.skulk === ninja3: ' + (ninja3.skulk() === ninja3) + '<br>');
-document.write('ninja4.skulk === ninja4: ' + (ninja4.skulk() === ninja4) + '<br>');
+console.log('ninja3.skulk === ninja3: ' + (ninja3.skulk() === ninja3));
+console.log('ninja4.skulk === ninja4: ' + (ninja4.skulk() === ninja4));
 
 
