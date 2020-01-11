@@ -8,15 +8,19 @@ const selectionSort = (arr) => {
       if (arr[j] < arr[minIndex]) { // если следующий элемент меньше текущий мин. элемента,
         minIndex = j; // то запоминаем его индекс в качестве нового минимума  
       }
-      if (i !== minIndex) { // Меняем элементы местами только в том случае, если был найден новый мин. элемент, что бы не выполнять лишние действия. 
-        let tmp = arr[minIndex];
-        arr[minIndex] = arr[i];
-        arr[i] = tmp;
-      }
+    }
+    if (i !== minIndex) { // Меняем элементы местами только в том случае, если был найден новый мин. элемент, что бы не выполнять лишние действия. 
+      let tmp = arr[minIndex];
+      arr[minIndex] = arr[i];
+      arr[i] = tmp;
     }
   }
   return arr;
 };
 
 const arr1 = [3, 5, 4, 2, 1];
+const arr2 = [3, 2, 1];
+const arr3 = [1, 7, 5, 8, 3, 2, 4, 6];
 console.log(selectionSort(arr1));
+console.log(selectionSort(arr2));
+console.log(selectionSort(arr3));
