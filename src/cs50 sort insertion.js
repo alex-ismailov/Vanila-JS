@@ -12,5 +12,6 @@ const insertionSort = (arr) => {
   return arr;
 };
 
-const arr1 = [3, 5, 4, 2, 1];
+const arr1 = [2, 1];
+const arr2 = [3, 5, 4, 2, 1];
 console.log(insertionSort(arr1));
