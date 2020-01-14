@@ -15,7 +15,7 @@ const partition = (items, left, right) => {
     while (items[rightPointer] > middle) {
       rightPointer -= 1; // сдвигаем правый указатель к центру если очередной элемент меньше среднего элемента
     }
-    if (leftPointer <= rightPointer) { // если в результате сдвигов левый указатель больше или равен правому
+    if (leftPointer <= rightPointer) { // если в результате сдвигов левый указатель меньше или равен правому
       swap(items, leftPointer, rightPointer);
       leftPointer += 1;
       rightPointer -= 1;
