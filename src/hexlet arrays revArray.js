@@ -2,9 +2,9 @@ const revArr = (arr) => {
   const size = arr.length;
   const maxSize = Math.floor(size / 2);
   for (let i = 0; i < maxSize; i += 1) {
-    const tmp = arr[(size - 1) - i];
-    arr[(size - 1) - i] = arr[i];
-    arr[i] = tmp; 
+    const tmp = arr[i];
+    arr[i] = arr[(size - 1) - i];
+    arr[(size - 1) - i] = tmp;
   }
   return arr;
 };
