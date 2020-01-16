@@ -8,12 +8,13 @@ const partition = (items, left, right) => {
   const pivot = items[Math.floor((left + right) / 2)]; // в качестве разделителя берем элемент из середины
   let leftPointer = left;
   let rightPointer = right;
+  // console.log(`leftPointer = ${leftPointer}, rightPointer = ${leftPointer, rightPointer}`);
   while (leftPointer <= rightPointer) { // пока левый указатель меньше или равен правому, т.е. пока они не пересекли опорный элемент
     while (items[leftPointer] < pivot) { // если items[leftPointer] < pivot, то это значит, что элемент на месте 
-      leftPointer += 1; // и мы сдвигаем левый указатель направо к опорному элементу (к pivot(у))  
+      leftPointer += 1; // и мы сдвигаем левый указатель направо к опорному элементу (к pivot(у)) в поисках нового не отсортированного элемента
     }
     while (items[rightPointer] > pivot) { // если items[rightPointer] < pivot, то это значит, что элемент на месте
-      rightPointer -= 1; // сдвигаем правый указатель к центру если очередной элемент меньше pivot элемента
+      rightPointer -= 1; // сдвигаем правый указатель налево к опорному элементу (к pivot(у)),  в поисках нового не отсортированного элемента
     }
     if (leftPointer <= rightPointer) { // если в результате сдвигов левый указатель меньше или равен правому, значит еще есть не отсортированные элементы
       swap(items, leftPointer, rightPointer); // переносим меньший элемент налево, а больший направо
@@ -39,5 +40,7 @@ const quickSort = (items, left = 0, right = items.length - 1) => {
 };
 
 // testing
-const arr1 = [3, 5, 4, 2, 1];
-console.log(quickSort(arr1));
+// const arr1 = [3, 5, 4, 2, 1];
+// console.log(quickSort(arr1)); // передача arr1 по ссылке
+const arr = [9, 6, 3, 4, 1, 2, 8, 7, 5];
+console.log(quickSort(arr));
