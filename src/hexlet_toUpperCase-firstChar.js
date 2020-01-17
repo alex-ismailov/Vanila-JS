@@ -11,7 +11,7 @@ const myFirstCharInStrToUpperCase = (str) => {
     for (let i = 0; i < strLength; i += 1) {
         if (str[i] !== toUpperCase(str[i]) && (str[i - 1] === ' ' || str[i - 1] === undefined)) {
             strRes += toUpperCase(str[i]);
-            console.log('my func worked');
+            // console.log('my func worked');
         } else {
             strRes += str[i];
         }
@@ -26,7 +26,7 @@ const firstCharInStrToUpperCase = (str) => {
     for (let i = 0; i < length(str); i += 1) {
         const shouldBeBig = (i === 0 || str[i - 1] === ' ');
         result += shouldBeBig ? toUpperCase(str[i]) : str[i];
-        console.log('Teacher`s func worked');
+        // console.log('Teacher`s func worked');
     }
 
     return result;
