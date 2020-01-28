@@ -44,3 +44,9 @@ const points = [
 for (const [x, y] of points) {
   console.log([x, y]);
 }
+// => [ 4, 3 ]
+// => [ 0, -3 ]
+
+for (const [x, y] of points) {
+  console.log(x + y);
+}
