@@ -17,7 +17,7 @@ import {
   l, isEmpty, head, tail,
 } from '@hexlet/pairs-data';
 
-/* linear recursive process */
+/* linear iterative process */
 const forEach = (cb, items) => {
   if (isEmpty(items)) {
     return true;
@@ -25,6 +25,8 @@ const forEach = (cb, items) => {
   cb(head(items));
   return forEach(cb, tail(items));
 };
+
+
 
 /* testing */
 const numbers = l(10, 20, 30, 40, 50);
