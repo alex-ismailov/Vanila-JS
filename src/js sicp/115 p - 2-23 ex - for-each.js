@@ -26,9 +26,18 @@ const forEach = (cb, items) => {
   return forEach(cb, tail(items));
 };
 
-
+/* using while cycle */
+const forEach2 = (cb, items) => {
+  let pointer = items;
+  while (!isEmpty(pointer)) {
+    cb(head(pointer));
+    pointer = tail(pointer);
+  }
+  return true;
+};
 
 /* testing */
 const numbers = l(10, 20, 30, 40, 50);
 const callBack = (item) => console.log(item);
 forEach(callBack, numbers);
+forEach2(callBack, numbers);
