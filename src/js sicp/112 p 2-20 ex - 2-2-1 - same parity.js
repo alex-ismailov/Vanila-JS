@@ -32,7 +32,23 @@ const sameParity = (...args) => {
   return iter(list, l());
 };
 
-/* version 2 - from begin */
+/* version 2 - from end */
+/* using while cicle */
+const sameParity3 = (...args) => {
+  const list = l(...args);
+  const first = head(list);
+  let pointer = list;
+  let acc = l();
+  while(!isEmpty(pointer)) {
+    if (isSuitable(first, head(pointer))) {
+      acc = cons(head(pointer), acc);
+    }
+    pointer = tail(pointer);
+  }
+  return reverse(acc);
+};
+
+/* version 3 - from begin */
 /* linear recursive process */
 const sameParity2 = (...args) => {
   const list = l(...args);
@@ -53,8 +69,11 @@ const sameParity2 = (...args) => {
 };
 
 /* testing */
-console.log(listToString(sameParity(1, 2, 3, 4, 5, 6, 7))); // (1, 3, 5, 7)
-console.log(listToString(sameParity(2, 3, 4, 5, 6, 7))); // (2, 4, 6)
+// console.log(listToString(sameParity(1, 2, 3, 4, 5, 6, 7))); // (1, 3, 5, 7)
+// console.log(listToString(sameParity(2, 3, 4, 5, 6, 7))); // (2, 4, 6)
 
-console.log(listToString(sameParity2(1, 2, 3, 4, 5, 6, 7))); // (1, 3, 5, 7)
-console.log(listToString(sameParity2(2, 3, 4, 5, 6, 7))); // (2, 4, 6)
+// console.log(listToString(sameParity2(1, 2, 3, 4, 5, 6, 7))); // (1, 3, 5, 7)
+// console.log(listToString(sameParity2(2, 3, 4, 5, 6, 7))); // (2, 4, 6)
+
+console.log(listToString(sameParity3(1, 2, 3, 4, 5, 6, 7))); // (1, 3, 5, 7)
+console.log(listToString(sameParity3(2, 3, 4, 5, 6, 7))); // (2, 4, 6)
