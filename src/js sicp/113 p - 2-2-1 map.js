@@ -13,18 +13,18 @@ const lMap = (fn, list) => {
   }
   return cons(
     fn(head(list)),
-    lMap(fn, tail(list))
+    lMap(fn, tail(list)),
   );
 };
 
 /* version 2 */
 /* linear iterative process */
 const lMap2 = (fn, list) => {
-  const iter = (list, acc) => {
-    if (isEmpty(list)) {
+  const iter = (currList, acc) => {
+    if (isEmpty(currList)) {
       return reverse(acc);
     }
-    return iter(tail(list), cons(fn(head(list)), acc));
+    return iter(tail(currList), cons(fn(head(currList)), acc));
   };
   return iter(list, l());
 };
@@ -39,12 +39,12 @@ const lMap3 = (fn, list) => {
     pointer = tail(pointer);
   }
   return reverse(acc);
-}
+};
 
 /* testing */
 const list = l(1, 2, 3, 4, 5);
 const square = (num) => num ** 2;
-const cube = (num) => Math.pow(num, 3);
+const cube = (num) => num ** 3;
 
 console.log(listToString(lMap(square, list)));
 console.log(listToString(lMap(cube, list)));
