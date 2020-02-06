@@ -11,6 +11,8 @@ const popFront = (whereFrom) => {
   return user;
 };
 
+const isEmptyDeq = (deque) => deque.length === 0;
+
 export {
-  makeDeque, pushBack, popFront,
+  makeDeque, pushBack, popFront, isEmptyDeq,
 };
