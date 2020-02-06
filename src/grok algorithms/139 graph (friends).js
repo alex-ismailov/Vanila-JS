@@ -49,27 +49,35 @@ const addFriend = (graph, userName, friend) => {
   return true;
 };
 
+const getFriendsOf = (graph, userName) => {
+  const user = getUser(graph, userName);
+  const [, friends] = user;
+  return friends;
+};
+
 /* testing */
 const graph = makeGraph();
-// console.log(getUser(graph, 'Alex Smile'));
+console.log(getUser(graph, 'Alex Smile'));
 console.log(makeUser(graph, 'Alex Smile'));
-// console.log(makeUser(graph, 'Alex Smile'));
-// console.log(getUser(graph, 'Alex Smile'));
+console.log(makeUser(graph, 'Alex Smile'));
+console.log(getUser(graph, 'Alex Smile'));
 console.log(addFriend(graph, 'Alex Smile', 'Ksu Antesana'));
-// console.log(getUser(graph, 'Alex Smile'));
+console.log(getUser(graph, 'Alex Smile'));
 console.log(addFriend(graph, 'Alex Smile', 'Vika Smile'));
-// console.log(getUser(graph, 'Alex Smile'));
+console.log(getUser(graph, 'Alex Smile'));
+console.log(getFriendsOf(graph, 'Alex Smile'));
 
 console.log(makeUser(graph, 'Ksu Antesana'));
 console.log(addFriend(graph, 'Ksu Antesana', 'Alex Smile'));
 console.log(addFriend(graph, 'Ksu Antesana', 'Vika Smile'));
+console.log(getFriendsOf(graph, 'Ksu Antesana'));
 
 console.log(makeUser(graph, 'Vika Smile'));
 console.log(addFriend(graph, 'Vika Smile', 'Alex Smile'));
 console.log(addFriend(graph, 'Vika Smile', 'Ksu Antesana'));
-// console.log(getIndex('ivan ivanov'));
+console.log(getFriendsOf(graph, 'Vika Smile'));
 
-console.log(getUser(graph, 'Alex Smile'));
-console.log(getUser(graph, 'Ksu Antesana'));
-console.log(getUser(graph, 'Vika Smile'));
-console.log(graph);
+// console.log(getUser(graph, 'Alex Smile'));
+// console.log(getUser(graph, 'Ksu Antesana'));
+// console.log(getUser(graph, 'Vika Smile'));
+// console.log(graph);
