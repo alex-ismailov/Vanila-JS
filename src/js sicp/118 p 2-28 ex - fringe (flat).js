@@ -14,78 +14,36 @@ import { l, isEmpty, isList, cons, head, tail, concat, reverse, toString as list
 (1 2 3 4 1 2 3 4)
 */
 
-// const fringe = (list) => {
+/* version 1 */
+// const fringe = (tree) => {
 //   const iter = (source, acc) => {
-//     console.log(listToString(head(source)));
 //     if (isEmpty(source)) {
-//       return acc;
+//       return reverse(acc);
 //     }
 //     if (isList(head(source))) {
-//       return iter();
+//       return concat(iter(head(source), acc), iter(tail(source), l()));
 //     }
-//     return iter(tail(list), cons(head(source), acc));
+//     return iter(tail(source), cons(head(source), acc))
 //   };
-//   return iter(list, l())
+//   return iter(tree, l());
 // };
 
-// const fringe = (list) => {
-//   const iter = (source, acc) => {
-//     if (isEmpty(source)) {
-//       return acc;
-//     }
-//     if (isList(source)) {
-//       return iter;
-//     }
-//     return iter(tail(source), cons(head(source), acc));
-//   };
-//   return iter(list, l())
-// };
-
-// const fringe = (list) => {
-//   if (isEmpty(list)) {
-//     return l();
-//   }
-//   return cons(head(list), fringe(tail(list)));
-// };
-
-// const fringe = (list) => {
-//   if (isEmpty(list)) {
-//     return l();
-//   }
-//   if (isList(head(list))) {
-//     return fringe(head(list));
-//   }
-//   return cons(head(list), fringe(tail(list)));
-// };
-
-// const fringe = (tree) => {
-//   if (isEmpty(tree)) {
-//     return l();
-//   }
-//   if (isList(head(tree))) {
-//     return concat(fringe(head(tree)), fringe(head(tail(tree))));
-//   }
-//   return tree;
-// };
-
+/* version 2 */
 const fringe = (tree) => {
-  const iter = (source, acc) => {
-    if (isEmpty(source)) {
-      return reverse(acc);
-    }
-    if (isList(head(source))) {
-      return concat(iter(head(source), acc), iter(tail(source), l()));
-    }
-    return iter(tail(source), cons(head(source), acc))
-  };
-  return iter(tree, l());
+  if (isEmpty(tree)) {
+    return l();
+  }
+  if (isList(head(tree))) {
+    return concat(fringe(head(tree)), fringe(tail(tree)));
+  }
+  return cons(head(tree), fringe(tail(tree)));
 };
 
 /* testing */
 const list = l(l(1, 2), l(3, 4));
 console.log(listToString(fringe(list)));
 
-const list2 = l(l(1, 2), l(3, 4, l(5, 6)));
+const list2 = l(l(1, 2), 3, 4, l(5, 6));
 console.log(listToString(fringe(list2)));
 
 const list3 = l(l(1, 2), l(3, 4, l(5, l(6, l(7, 8, l(9))))));
