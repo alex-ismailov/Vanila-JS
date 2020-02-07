@@ -30,7 +30,9 @@ const length_3 = (list) => {
 };
 
 /* testing */
-const list = l(10, 20, 30, 40, 50);
-console.log(length(list)); // 5
-console.log(length_2(list)); // 5
-console.log(length_3(list)); // 5
+// const list = l(10, 20, 30, 40, 50);
+// console.log(length(list)); // 5
+// console.log(length_2(list)); // 5
+// console.log(length_3(list)); // 5
+
+export { length };
