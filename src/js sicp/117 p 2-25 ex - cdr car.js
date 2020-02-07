@@ -4,7 +4,9 @@
 ((7))
 (1 (2 (3 (4 (5 (6 7)))))) */
 
-import { l, head, tail, toString as listToString } from '@hexlet/pairs-data';
+import {
+  l, head, tail, toString as listToString,
+} from '@hexlet/pairs-data';
 
 const list1 = l(1, 3, l(5, 7), 9);
 const list2 = l(l(7));
