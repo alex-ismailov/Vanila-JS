@@ -22,7 +22,15 @@ const scaleTree = (tree, factor) => {
 const tree = l(1, l(2, l(3, 4), 5), l(6, 7));
 console.log(listToString(tree));
 console.log(listToString(scaleTree(tree, 10)));
-
-const tree2 = l(1, l(3, 4), 5);
+console.log('------------------');
+const tree2 = l(1, 2, l(3, 4), 5);
 console.log(listToString(tree2));
 console.log(listToString(scaleTree(tree2, 10)));
+console.log('------------------');
+const tree3 = l(1, 2, l(3, 4), 5);
+console.log(`tree: ${listToString(tree3)}`);
+console.log(listToString(scaleTree(tree, 10)));
+/* Ниже приведена визуализация с'cons'ивания древовидной последовательности tree3
+функцией scaleTree*/
+const tree3_OnCons = cons(1, cons(2, cons(cons(3, cons(4, null)), cons(5, null))));
+console.log(`tree3_OnCons: ${listToString(tree3_OnCons)}`);
