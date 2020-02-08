@@ -1,5 +1,5 @@
 import {
-  l, isEmpty, isList, cons, head, tail, toString as listToString,
+  l, isList, toString as listToString,
 } from '@hexlet/pairs-data';
 import { lMap } from '../myLib/lmap';
 
