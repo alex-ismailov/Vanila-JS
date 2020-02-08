@@ -19,7 +19,5 @@ const scaleTree = (tree, factor) => lMap((elem) => {
 /* testing */
 const tree = l(1, l(2, l(3, 4), 5), l(6, 7));
 console.log(listToString(tree));
-// console.log(listToString(scaleTree(tree, 10)));
-console.log(listToString(tMap((elem) => elem * 10, tree)));
-console.log(listToString(tMap((elem) => elem ** 2, tree)));
+console.log(listToString(scaleTree(tree, 10)));
 console.log('------------------');
