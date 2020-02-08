@@ -18,7 +18,7 @@ x
 import { l, isEmpty, head, tail, cons, isList, concat as append, filter, toString as listToString } from '@hexlet/pairs-data';
 
 const deepReverse = (items) => {
-  const iter = (source, result) => {
+  const iter = (source, acc) => {
     const reverseIt = (elem) => {
       if (isList(elem)) {
         return deepReverse(elem);
@@ -26,9 +26,9 @@ const deepReverse = (items) => {
       return elem;
     };
     if (isEmpty(source)) {
-      return result;
+      return acc;
     }
-    return iter(tail(source), cons(reverseIt(head(source)), result));
+    return iter(tail(source), cons(reverseIt(head(source)), acc));
   };
   return iter(items, l());
 };
