@@ -22,3 +22,7 @@ const scaleTree = (tree, factor) => {
 const tree = l(1, l(2, l(3, 4), 5), l(6, 7));
 console.log(listToString(tree));
 console.log(listToString(scaleTree(tree, 10)));
+
+const tree2 = l(1, l(3, 4), 5);
+console.log(listToString(tree2));
+console.log(listToString(scaleTree(tree2, 10)));
