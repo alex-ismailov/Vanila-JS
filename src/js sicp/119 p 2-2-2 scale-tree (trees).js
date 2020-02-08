@@ -1,4 +1,6 @@
-import { l, isEmpty, isList, cons, head, tail, concat, reverse, toString as listToString } from "@hexlet/pairs-data";
+import {
+  l, isEmpty, isList, cons, head, tail, toString as listToString,
+} from '@hexlet/pairs-data';
 
 // Подобно тому, как map может служить мощной абстракцией для работы с
 // последовательностями, map, совмещенная с рекурсией, служит мощной абстракцией
@@ -31,6 +33,6 @@ const tree3 = l(1, 2, l(3, 4), 5);
 console.log(`tree: ${listToString(tree3)}`);
 console.log(listToString(scaleTree(tree, 10)));
 /* Ниже приведена визуализация с'cons'ивания древовидной последовательности tree3
-функцией scaleTree*/
-const tree3_OnCons = cons(1, cons(2, cons(cons(3, cons(4, null)), cons(5, null))));
-console.log(`tree3_OnCons: ${listToString(tree3_OnCons)}`);
+функцией scaleTree */
+const treeOnCons = cons(1, cons(2, cons(cons(3, cons(4, null)), cons(5, null))));
+console.log(`tree3_OnCons: ${listToString(treeOnCons)}`);
