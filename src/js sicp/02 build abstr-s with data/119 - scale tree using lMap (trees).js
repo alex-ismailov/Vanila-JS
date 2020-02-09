@@ -1,7 +1,7 @@
 import {
   l, isList, toString as listToString,
 } from '@hexlet/pairs-data';
-import { lMap } from '../myLib/lmap';
+import { lMap } from '../../myLib/lmap';
 
 /* Другой способ реализации scale-tree состоит в том, чтобы рассматривать дерево
 как последовательность поддеревьев и использовать map.

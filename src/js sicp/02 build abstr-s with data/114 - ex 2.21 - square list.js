@@ -19,7 +19,7 @@ import {
   l, isEmpty, head, tail, cons, toString as listToString,
 } from '@hexlet/pairs-data';
 
-import { lMap } from '../myLib/lmap';
+import { lMap } from '../../myLib/lmap';
 
 /* version 1 */
 const squareList = (items) => {
