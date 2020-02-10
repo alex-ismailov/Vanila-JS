@@ -1,5 +1,5 @@
 import {
-  l, isEmpty, isList, head, tail, cons, concat, toString as listToString,
+  l, isEmpty, head, tail, cons, concat, toString as listToString,
 } from '@hexlet/pairs-data';
 import { lMap } from '../../myLib/lmap';
 
@@ -24,7 +24,7 @@ const subsets = (set) => {
     return l(l());
   }
   const rest = subsets(tail(set));
-  return concat(rest, lMap((ss) => cons(head(set), ss), rest))
+  return concat(rest, lMap((ss) => cons(head(set), ss), rest));
 };
 
 /* testing */
