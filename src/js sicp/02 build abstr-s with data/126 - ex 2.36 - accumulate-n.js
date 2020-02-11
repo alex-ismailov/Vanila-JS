@@ -28,3 +28,5 @@ const accumulateN = (cb, acc, seqs) => {
 /* testing */
 const setOfsets = l(l(1, 2, 3), l(4, 5, 6), l(7, 8, 9), l(10, 11, 12));
 console.log(listToString(accumulateN((curr, acc) => curr + acc, 0, setOfsets)));
+const test = cons(22, cons(26, cons(30, l())));
+console.log(listToString(test));
