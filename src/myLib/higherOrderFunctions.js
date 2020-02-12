@@ -2,13 +2,13 @@ import {
   l, isEmpty, isList, cons, head, tail, concat,
 } from '@hexlet/pairs-data';
 
-const lMap = (fn, list) => {
+const lMap = (cb, list) => {
   if (isEmpty(list)) {
     return l();
   }
   return cons(
-    fn(head(list)),
-    lMap(fn, tail(list)),
+    cb(head(list)),
+    lMap(cb, tail(list)),
   );
 };
 
@@ -22,12 +22,29 @@ const lFilter = (predicate, sequence) => {
   return lFilter(predicate, tail(sequence));
 };
 
+/* *************************************** */
 const lReduce = (cb, acc, sequence) => {
   if (isEmpty(sequence)) {
     return acc;
   }
   return lReduce(cb, cb(head(sequence), acc), tail(sequence));
 };
+
+/* foldLeft is the same as lReduce */
+const foldLeft = (cb, acc, sequence) => {
+  if (isEmpty(sequence)) {
+    return acc;
+  }
+  return foldLeft(cb, cb(head(sequence), acc), tail(sequence));
+};
+
+const foldRight = (cb, acc, sequence) => {
+  if (isEmpty(sequence)) {
+    return acc;
+  }
+  return cb(head(sequence), foldRight(cb, acc, tail(sequence)));
+};
+/* *************************************** */
 
 const enumerateInterval = (low, high) => {
   if (low > high) {
@@ -47,5 +64,5 @@ const enumerateTree = (tree) => {
 };
 
 export {
-  lMap, lFilter, lReduce, enumerateInterval, enumerateTree,
+  lMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree,
 };
