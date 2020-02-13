@@ -63,6 +63,8 @@ const enumerateTree = (tree) => {
   return cons(head(tree), enumerateTree(tail(tree)));
 };
 
+/* ******************* reverse ******************** */
+
 const tFlat = (tree) => foldRight((curr, acc) => {
   if (isList(curr)) {
     return concat(tFlat(curr), acc);
@@ -70,6 +72,26 @@ const tFlat = (tree) => foldRight((curr, acc) => {
   return cons(curr, acc);
 }, l(), tree);
 
+/* ******************* reverse ******************** */
+
+const reverseIt = (elem) => {
+  if (isList(elem)) {
+    return deepReverse(elem);
+  }
+  return elem;
+};
+
+const reverse = (seq) => foldLeft((curr, acc) => (
+  cons(curr, acc)
+), l(), seq);
+
+const deepReverse = (tree) => foldLeft((curr, acc) => (
+  cons(reverseIt(curr), acc)
+), l(), tree);
+
+/* ************************************************ */
+
 export {
   lMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
+  reverse, deepReverse,
 };
