@@ -2,6 +2,7 @@ import {
   l, isEmpty, isList, cons, head, tail, concat,
 } from '@hexlet/pairs-data';
 
+/* ******************* map ******************** */
 const lMap = (cb, list) => {
   if (isEmpty(list)) {
     return l();
@@ -12,6 +13,14 @@ const lMap = (cb, list) => {
   );
 };
 
+const tMap = (fn, tree) => lMap((elem) => {
+  if (isList(elem)) {
+    return tMap(fn, elem);
+  }
+  return fn(elem);
+}, tree);
+
+/* ******************* filter ******************** */
 const lFilter = (predicate, sequence) => {
   if (isEmpty(sequence)) {
     return l();
@@ -22,7 +31,7 @@ const lFilter = (predicate, sequence) => {
   return lFilter(predicate, tail(sequence));
 };
 
-/* *************************************** */
+/* ******************* reduce ******************** */
 const lReduce = (cb, acc, sequence) => {
   if (isEmpty(sequence)) {
     return acc;
@@ -44,8 +53,7 @@ const foldRight = (cb, acc, sequence) => {
   }
   return cb(head(sequence), foldRight(cb, acc, tail(sequence)));
 };
-/* *************************************** */
-
+/* ******************* enumerate ******************** */
 const enumerateInterval = (low, high) => {
   if (low > high) {
     return l();
@@ -63,8 +71,7 @@ const enumerateTree = (tree) => {
   return cons(head(tree), enumerateTree(tail(tree)));
 };
 
-/* ******************* reverse ******************** */
-
+/* ******************* flat ******************** */
 const tFlat = (tree) => foldRight((curr, acc) => {
   if (isList(curr)) {
     return concat(tFlat(curr), acc);
@@ -73,25 +80,23 @@ const tFlat = (tree) => foldRight((curr, acc) => {
 }, l(), tree);
 
 /* ******************* reverse ******************** */
-
-const reverseIt = (elem) => {
-  if (isList(elem)) {
-    return deepReverse(elem);
-  }
-  return elem;
-};
-
 const reverse = (seq) => foldLeft((curr, acc) => (
   cons(curr, acc)
 ), l(), seq);
 
-const deepReverse = (tree) => foldLeft((curr, acc) => (
-  cons(reverseIt(curr), acc)
-), l(), tree);
+const deepReverse = (tree) => {
+  const reverseIt = (elem) => {
+    if (isList(elem)) {
+      return deepReverse(elem);
+    }
+    return elem;
+  };
+  return foldLeft((curr, acc) => cons(reverseIt(curr), acc), l(), tree);
+};
 
 /* ************************************************ */
 
 export {
-  lMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
+  lMap, tMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
   reverse, deepReverse,
 };
