@@ -63,6 +63,13 @@ const enumerateTree = (tree) => {
   return cons(head(tree), enumerateTree(tail(tree)));
 };
 
+const tFlat = (tree) => foldRight((curr, acc) => {
+  if (isList(curr)) {
+    return concat(tFlat(curr), acc);
+  }
+  return cons(curr, acc);
+}, l(), tree);
+
 export {
-  lMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree,
+  lMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
 };
