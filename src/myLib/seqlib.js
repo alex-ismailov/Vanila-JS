@@ -94,9 +94,13 @@ const deepReverse = (tree) => {
   return foldLeft((curr, acc) => cons(reverseIt(curr), acc), l(), tree);
 };
 
-/* ************************************************ */
+/* ******************** flatMap ********************* */
+
+const flatMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
+
+
 
 export {
   lMap, tMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
-  reverse, deepReverse,
+  reverse, deepReverse, flatMap,
 };
