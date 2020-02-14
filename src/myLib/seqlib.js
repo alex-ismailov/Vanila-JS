@@ -95,12 +95,13 @@ const deepReverse = (tree) => {
 };
 
 /* ******************** flatMap ********************* */
-
 const flatMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
 
 
+/* ******************** remove ********************* */
+const remove = (elem, set) => lFilter((curr) => curr !== elem, set);
 
 export {
   lMap, tMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
-  reverse, deepReverse, flatMap,
+  reverse, deepReverse, flatMap, remove,
 };
