@@ -1,5 +1,5 @@
 import { flatMap, lMap, enumerateInterval, lFilter, foldRight } from '../../myLib/seqlib';
-import { l, head, tail, concat, toString as listToString, cons } from '@hexlet/pairs-data';
+import { l, head, tail, concat, toString as listToString, cons, isEmpty } from '@hexlet/pairs-data';
 
 const uniquePairs = (n) => flatMap((i) => lMap((j) => l(i, j), enumerateInterval(1, i - 1)), enumerateInterval(1, n));
 
@@ -25,5 +25,9 @@ const triplesSum = (s, n) => {
 };
 
 /* testing */
-console.log(listToString(uniqueTriples(4)));
-console.log(listToString(triplesSum(7)));
+for (let i = 0; i < 10000; i += 1) {
+  const res = triplesSum(i);
+  if (!isEmpty(res)) {
+    console.log(`i = ${i}, triples: ${listToString(res)}`);
+  }
+};
