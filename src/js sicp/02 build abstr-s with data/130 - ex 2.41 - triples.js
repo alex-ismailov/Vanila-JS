@@ -20,9 +20,10 @@ const uniqueTriples = (n) => (
     enumerateInterval(1, n))
 );
 
-const triplesSum = (sum, n) => {
-  return lFilter((triple) => foldRight(()));
+const triplesSum = (s, n) => {
+  return lFilter((triple) => (s === foldRight((curr, acc) => acc + curr, 0, triple)), uniqueTriples(6));
 };
 
 /* testing */
 console.log(listToString(uniqueTriples(4)));
+console.log(listToString(triplesSum(7)));
