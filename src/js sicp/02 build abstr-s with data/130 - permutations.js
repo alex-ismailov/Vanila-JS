@@ -1,6 +1,8 @@
-import { l, cons, isEmpty, toString as listToString } from "@hexlet/pairs-data";
 import {
-  foldRight, lMap, enumerateInterval, lFilter, flatMap,
+  l, cons, isEmpty, toString as listToString,
+} from '@hexlet/pairs-data';
+import {
+  lMap, lFilter, flatMap,
 } from '../../myLib/seqlib';
 
 /* Вложенные отображения полезны не только для таких последовательностей, которые
@@ -10,14 +12,13 @@ import {
 {1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2} и {3, 2, 1}.
 */
 
-const remove = (elem, set) => lFilter((curr) => curr !== elem, set);
+const remove = (elem, set) => lFilter((curr) => !(curr === elem), set);
 
-const permutations = (s) => {
-  if (isEmpty(s)) {
-    return l(l());
-  }
-  return flatMap((x) => lMap((p) => cons(x, p), permutations(remove(x, s))), s);
-};
+const permutations = (s) => (isEmpty(s)
+  ? l(null)
+  : flatMap((x) => lMap((p) => cons(x, p),
+    permutations(remove(x, s))),
+  s));
 
 /* testing */
 const set = l(1, 2, 3);
