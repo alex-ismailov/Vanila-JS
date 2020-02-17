@@ -1,7 +1,7 @@
 import {
   l, isList, toString as listToString,
 } from '@hexlet/pairs-data';
-import { lMap } from '../../myLib/lmap';
+import { lMap } from '../../myLib/seqlib';
 
 /* Другой способ реализации scale-tree состоит в том, чтобы рассматривать дерево
 как последовательность поддеревьев и использовать map.
@@ -9,12 +9,11 @@ import { lMap } from '../../myLib/lmap';
 возвращаем список результатов. В базовом случае, когда дерево является листом,
 мы просто умножаем: */
 
-const scaleTree = (tree, factor) => lMap((elem) => {
-  if (isList(elem)) {
-    return scaleTree(elem, factor);
-  }
-  return elem * factor;
-}, tree);
+const scaleTree = (tree, fac) => 
+  lMap((curr) => isList(curr)
+      ? scaleTree(curr, fac)
+      : curr * fac,
+    tree);
 
 /* testing */
 const tree = l(1, l(2, l(3, 4), 5), l(6, 7));
