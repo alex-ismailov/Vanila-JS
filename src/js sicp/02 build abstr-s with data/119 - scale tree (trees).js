@@ -10,15 +10,13 @@ import {
 // каждое число умножено на множитель.
 
 /* linear recursive process */
-const scaleTree = (tree, factor) => {
-  if (isEmpty(tree)) {
-    return l();
-  }
-  if (isList(head(tree))) {
-    return cons(scaleTree(head(tree), factor), scaleTree(tail(tree), factor));
-  }
-  return cons(head(tree) * factor, scaleTree(tail(tree), factor));
-};
+const scaleTree = (tree, fac) => (
+  isEmpty(tree)
+    ? l()
+    : isList(head(tree))
+      ? cons(scaleTree(head(tree), fac), scaleTree(tail(tree), fac))
+      : cons(head(tree) * fac, scaleTree(tail(tree), fac))
+);
 
 /* testing */
 const tree = l(1, l(2, l(3, 4), 5), l(6, 7));
