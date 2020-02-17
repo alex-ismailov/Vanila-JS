@@ -3,15 +3,11 @@ import {
 } from '@hexlet/pairs-data';
 
 /* ******************* map ******************** */
-const lMap = (cb, list) => {
-  if (isEmpty(list)) {
-    return l();
-  }
-  return cons(
-    cb(head(list)),
-    lMap(cb, tail(list)),
-  );
-};
+const lMap = (fn, items) => (
+  isEmpty(items)
+    ? l()
+    : cons(fn(head(items)), map(fn, tail(items)))
+);
 
 const tMap = (fn, tree) => lMap((elem) => {
   if (isList(elem)) {
