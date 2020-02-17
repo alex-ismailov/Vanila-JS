@@ -6,7 +6,7 @@ import {
 const lMap = (fn, items) => (
   isEmpty(items)
     ? l()
-    : cons(fn(head(items)), map(fn, tail(items)))
+    : cons(fn(head(items)), lMap(fn, tail(items)))
 );
 
 const tMap = (fn, tree) => lMap((elem) => {
