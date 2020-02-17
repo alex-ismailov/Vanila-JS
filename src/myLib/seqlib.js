@@ -57,6 +57,16 @@ const foldRight = (cb, acc, sequence) => {
   }
   return cb(head(sequence), foldRight(cb, acc, tail(sequence)));
 };
+
+/* ******************* fringe / flat ******************** */
+const fringe = (list) => (
+  isEmpty(list)
+    ? l()
+    : ! isList(head(list))
+      ? cons(head(list), fringe(tail(list)))
+      : concat(fringe(head(list)), fringe(tail(list)))
+);
+
 /* ******************* enumerate ******************** */
 const enumerateInterval = (low, high) => {
   if (low > high) {
@@ -106,6 +116,6 @@ const flatMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
 const remove = (elem, set) => lFilter((curr) => curr !== elem, set);
 
 export {
-  lMap, tMap, forEach, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
+  lMap, tMap, forEach, lFilter, lReduce, foldLeft, foldRight, fringe, enumerateInterval, enumerateTree, tFlat,
   reverse, deepReverse, flatMap, remove,
 };
