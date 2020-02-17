@@ -7,12 +7,11 @@
 import { l, isEmpty, head, tail, cons, concat, filter, toString as listToString } from '@hexlet/pairs-data';
 
 const reverse = (list) => {
-  const iter = (list, acc) => {
-    if (isEmpty(list)) {
-      return acc;
-    }
-    return iter(tail(list), cons(head(list), acc));
-  };
+  const iter = (curr, acc) => (
+    isEmpty(curr)
+      ? acc
+      : iter(tail(curr), cons(head(curr), acc))
+  );
   return iter(list, l());
 };
 
