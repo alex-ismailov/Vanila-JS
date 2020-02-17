@@ -5,6 +5,12 @@ import {
   l, isEmpty, head, tail, cons, reverse, toString as listToString,
 } from '@hexlet/pairs-data';
 
+const map = (fn, items) => (
+  isEmpty(items)
+    ? l()
+    : cons(fn(head(items)), map(fn, tail(items)))
+);
+
 /* version 1 */
 /* linear recursive process */
 const lMap = (fn, list) => {
@@ -57,3 +63,6 @@ console.log(listToString(lMap2((n) => n ** 4, list)));
 console.log(listToString(lMap3(square, list)));
 console.log(listToString(lMap3(cube, list)));
 console.log(listToString(lMap3((n) => n ** 4, list)));
+
+const mappedItems = map((curr) => curr * 10, list);
+console.log(listToString(mappedItems));
