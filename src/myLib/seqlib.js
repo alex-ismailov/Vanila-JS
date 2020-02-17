@@ -1,5 +1,5 @@
 import {
-  l, isEmpty, isList, cons, head, tail, concat,
+  l, isEmpty, isList, cons, head, tail,
 } from '@hexlet/pairs-data';
 
 /* ******************* map ******************** */
