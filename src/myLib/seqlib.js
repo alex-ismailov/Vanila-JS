@@ -58,14 +58,19 @@ const foldRight = (cb, acc, sequence) => {
   return cb(head(sequence), foldRight(cb, acc, tail(sequence)));
 };
 
-/* ******************* fringe / flat ******************** */
-const fringe = (list) => (
-  isEmpty(list)
-    ? l()
-    : ! isList(head(list))
-      ? cons(head(list), fringe(tail(list)))
-      : concat(fringe(head(list)), fringe(tail(list)))
+/* ******************* concat ******************** */
+const concat = (list1, list2) => (
+  isEmpty(list1)
+    ? list2
+    : cons(head(list1), concat(tail(list1), list2))
 );
+
+/* ******************* fringe / fringe ******************** */
+const fringe = (tree) => foldRight((curr, acc) => (
+  isList(curr)
+    ? concat(fringe(curr), acc)
+    : cons(curr, acc)
+), l(), tree);
 
 /* ******************* enumerate ******************** */
 const enumerateInterval = (low, high) => {
@@ -85,10 +90,10 @@ const enumerateTree = (tree) => {
   return cons(head(tree), enumerateTree(tail(tree)));
 };
 
-/* ******************* flat ******************** */
-const tFlat = (tree) => foldRight((curr, acc) => {
+/* ******************* fringe ******************** */
+const tfringe = (tree) => foldRight((curr, acc) => {
   if (isList(curr)) {
-    return concat(tFlat(curr), acc);
+    return concat(tfringe(curr), acc);
   }
   return cons(curr, acc);
 }, l(), tree);
@@ -108,14 +113,14 @@ const deepReverse = (tree) => {
   return foldLeft((curr, acc) => cons(reverseIt(curr), acc), l(), tree);
 };
 
-/* ******************** flatMap ********************* */
-const flatMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
+/* ******************** fringeMap ********************* */
+const fringeMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
 
 
 /* ******************** remove ********************* */
 const remove = (elem, set) => lFilter((curr) => curr !== elem, set);
 
 export {
-  lMap, tMap, forEach, lFilter, lReduce, foldLeft, foldRight, fringe, enumerateInterval, enumerateTree, tFlat,
-  reverse, deepReverse, flatMap, remove,
+  lMap, tMap, forEach, lFilter, lReduce, foldLeft, foldRight, fringe, enumerateInterval, enumerateTree, tfringe,
+  reverse, deepReverse, fringeMap, remove,
 };
