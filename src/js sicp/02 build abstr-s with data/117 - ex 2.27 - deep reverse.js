@@ -16,23 +16,22 @@ x
  */
 
 import { l, isEmpty, head, tail, cons, isList, concat as append, filter, toString as listToString } from '@hexlet/pairs-data';
+import { reverse } from '../../myLib/seqlib';
 
-const deepReverse = (items) => {
-  const iter = (source, acc) => {
-    const reverseIt = (elem) => {
-      if (isList(elem)) {
-        return deepReverse(elem);
-      }
-      return elem;
-    };
-    if (isEmpty(source)) {
-      return acc;
-    }
-    return iter(tail(source), cons(reverseIt(head(source)), acc));
-  };
-  return iter(items, l());
+const reverseIt = (elem) => (
+  isList(elem)
+    ? deepReverse(elem)
+    : elem
+);
+
+const deepReverse = (list) => {
+  const iter = (rest, acc) => (
+    isEmpty(rest)
+      ? acc
+      : iter(tail(rest), cons(reverseIt(head(rest)), acc))
+  );
+  return iter(list, l());
 };
-
 /* testing */
 const list = l(l(1, 2), l(3, 4));
 const list2 = l(l(1, 2, l(5, 6)), l(3, 4));
