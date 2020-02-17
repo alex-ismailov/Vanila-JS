@@ -16,6 +16,14 @@ const tMap = (fn, tree) => lMap((elem) => {
   return fn(elem);
 }, tree);
 
+
+/* ******************* for each ******************** */
+const forEach = (fn, items) => (
+  isEmpty(items)
+    ? true
+    : (fn(head(items)), forEach(fn, tail(items)))
+);
+
 /* ******************* filter ******************** */
 const lFilter = (predicate, sequence) => {
   if (isEmpty(sequence)) {
@@ -98,6 +106,6 @@ const flatMap = (fn, seq) => foldRight(concat, l(), lMap(fn, seq));
 const remove = (elem, set) => lFilter((curr) => curr !== elem, set);
 
 export {
-  lMap, tMap, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
+  lMap, tMap, forEach, lFilter, lReduce, foldLeft, foldRight, enumerateInterval, enumerateTree, tFlat,
   reverse, deepReverse, flatMap, remove,
 };
