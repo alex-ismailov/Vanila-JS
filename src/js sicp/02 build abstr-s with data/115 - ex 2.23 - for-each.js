@@ -18,7 +18,14 @@ import {
 } from '@hexlet/pairs-data';
 
 /* linear iterative process */
-const forEach = (cb, items) => {
+const forEach = (fn, items) => (
+  isEmpty(items)
+    ? true
+    : (fn(head(items)), forEach(fn, tail(items)))
+);
+
+/* linear iterative process */
+const forEach1 = (cb, items) => {
   if (isEmpty(items)) {
     return true;
   }
@@ -39,5 +46,6 @@ const forEach2 = (cb, items) => {
 /* testing */
 const numbers = l(10, 20, 30, 40, 50);
 const callBack = (item) => console.log(item);
-forEach(callBack, numbers);
-forEach2(callBack, numbers);
+forEach(console.log, numbers);
+// forEach1(console.log, numbers);
+// forEach2(console.log, numbers);
