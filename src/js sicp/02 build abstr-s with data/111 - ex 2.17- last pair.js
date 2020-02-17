@@ -6,15 +6,21 @@
 
 import { l, isEmpty, head, tail, cons, concat, filter, toString as listToString } from '@hexlet/pairs-data';
 
-const lastPair = (list) => {
-  const iter = (list, acc) => {
-    if (isEmpty(list)) {
-      return acc;
-    }
-    return iter(tail(list), head(list));
-  };
-  return iter(list, head(list));
-};
+const lastPair = (list) => (
+  isEmpty(tail(list))
+    ? head(list)
+    : lastPair(tail(list))
+);
+
+// const lastPair = (list) => {
+//   const iter = (list, acc) => {
+//     if (isEmpty(list)) {
+//       return acc;
+//     }
+//     return iter(tail(list), head(list));
+//   };
+//   return iter(list, head(list));
+// };
 
 /* testing */
 const list = l(23, 72, 149, 34); 
