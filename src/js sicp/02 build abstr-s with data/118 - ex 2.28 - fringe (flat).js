@@ -14,30 +14,13 @@ import { l, isEmpty, isList, cons, head, tail, concat, reverse, toString as list
 (1 2 3 4 1 2 3 4)
 */
 
-/* version 1 */
-// const fringe = (tree) => {
-//   const iter = (source, acc) => {
-//     if (isEmpty(source)) {
-//       return reverse(acc);
-//     }
-//     if (isList(head(source))) {
-//       return concat(iter(head(source), acc), iter(tail(source), l()));
-//     }
-//     return iter(tail(source), cons(head(source), acc))
-//   };
-//   return iter(tree, l());
-// };
-
-/* version 2 */
-const fringe = (tree) => {
-  if (isEmpty(tree)) {
-    return l();
-  }
-  if (isList(head(tree))) {
-    return concat(fringe(head(tree)), fringe(tail(tree)));
-  }
-  return cons(head(tree), fringe(tail(tree)));
-};
+const fringe = (list) => (
+  isEmpty(list)
+    ? l()
+    : ! isList(head(list))
+      ? cons(head(list), fringe(tail(list)))
+      : concat(fringe(head(list)), fringe(tail(list)))
+);
 
 /* testing */
 const list = l(l(1, 2), l(3, 4));
