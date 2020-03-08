@@ -6,6 +6,7 @@
   "repository": "https://github.com/alex-ismailov/Vanila-JS",
   "author": "alex-ismailov <alexander.is.dev@gmail.com>",
   "license": "UNLICENSED",
+  "type": "module",
   "scripts": {
     "eslint": "eslint"
   },
