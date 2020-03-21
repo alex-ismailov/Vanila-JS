@@ -1,5 +1,5 @@
 {
-  "name": "Vanila-JS",
+  "name": "vanila-js",
   "version": "0.0.0",
   "description": "JS experiments",
   "main": "index.js",
@@ -20,6 +20,8 @@
     "eslint": "^6.7.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
-    "lodash": "^4.17.15"
+    "intelli-espower-loader": "^1.0.1",
+    "lodash": "^4.17.15",
+    "power-assert": "^1.6.1"
   }
 }
