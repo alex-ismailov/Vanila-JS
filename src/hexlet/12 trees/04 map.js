@@ -1,3 +1,5 @@
+/* *** JS: Деревья → Map → lesson examples *** */
+
 const dfs = (tree) => {
   const [name, children] = tree;
   const newName = name.toLowerCase();
@@ -17,6 +19,7 @@ const tree = ['A', [
 ]];
 
 console.log(JSON.stringify(dfs(tree)));
+// => ["a",[["b",[["e"],["f"]]],["c"],["d",[["g"],["j"]]]]]
 
 /* *********************************** */
 
@@ -33,3 +36,4 @@ const map = (f, tree) => {
 
 const mappedTree = map(([name]) => [name.toLowerCase()], tree);
 console.log(JSON.stringify(mappedTree));
+// => ["a",[["b",[["e"],["f"]]],["c"],["d",[["g"],["j"]]]]]
