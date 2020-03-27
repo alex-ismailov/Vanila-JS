@@ -2,7 +2,6 @@ import { mkdir, mkfile, isFile, isDirectory } from '@hexlet/immutable-fs-trees';
 
 const reduce = (fn, tree, acc) => {
   const newAcc = fn(acc, tree);
-
   if (isFile(tree)) {
     return newAcc;
   }
@@ -25,7 +24,6 @@ const tree = mkdir('/', [
   mkfile('resolve'),
 ]);
 
-/* testing */
 /* Все пустые директории */
 const dirs = reduce((acc, n) => {
   if (isDirectory(n) && n.children.length === 0) {
@@ -34,7 +32,8 @@ const dirs = reduce((acc, n) => {
   return acc;
 }, tree, []);
 
-console.log(dirs);
+console.log(dirs); // [ 'apache', 'data' ]
+
 /* ****************************** */
 
 /* Все пустые директории, но с максимальной глубиной поиска 2 уровня */
@@ -54,4 +53,4 @@ const findEmptyDirsDepths = (root, depth = 1) => {
 };
 
 const emptyDirs = findEmptyDirsDepths(tree, 2);
-console.log(emptyDirs);
+console.log(emptyDirs); // [ 'apache' ]
