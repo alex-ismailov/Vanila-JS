@@ -16,5 +16,5 @@ const tree = ['A', [
   ['D', [['G'], ['J']]],
 ]];
 
-const res = reduce((acc) => acc + 1, tree, 0); // 8
-console.log(res);
+const res = reduce((acc) => acc + 1, tree, 0);
+console.log(res); // 8
