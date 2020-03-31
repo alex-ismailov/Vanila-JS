@@ -26,10 +26,10 @@ const makeAdjacencyList = (tree, dict, parent = null) => {
   const children = [];
   dict[nodeName] = [parent, children];
   if (branches) {
-    for (const branch of branches) {
+    branches.map((branch) => {
       const name = makeAdjacencyList(branch, dict, parent = nodeName);
       children.push(name);
-    }
+    });
   }
   return nodeName;
 };
