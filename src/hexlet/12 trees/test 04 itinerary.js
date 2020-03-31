@@ -21,17 +21,23 @@ import _ from 'lodash';
 //   Rzhev: ['Tver', []],
 // };
 
-const makeAdjacencyList = (tree, dict, parent = null) => {
-  const [nodeName, branches] = tree;
-  const children = [];
-  dict[nodeName] = [parent, children];
-  if (branches) {
-    branches.forEach((branch) => {
-      const name = makeAdjacencyList(branch, dict, nodeName);
-      children.push(name);
-    });
-  }
-  return nodeName;
+const getAdjacencyList = (tree) => {
+  const adjacencyList = {};
+  const makeAdjacencyList = (currTree, dict, parent = null) => {
+    const [nodeName, branches] = currTree;
+    const children = [];
+    _.set(dict, nodeName, [parent, children]);
+    if (branches) {
+      branches.forEach((branch) => {
+        const name = makeAdjacencyList(branch, dict, nodeName);
+        children.push(name);
+      });
+    }
+    return nodeName;
+  };
+
+  makeAdjacencyList(tree, adjacencyList);
+  return adjacencyList;
 };
 
 const getCommonParent = (first, second, dict) => {
@@ -47,7 +53,7 @@ const getCommonParent = (first, second, dict) => {
   return getCommonParent(parentName, second, dict);
 };
 
-const getUpRoute = (from, to, dict) => {
+const getRoute = (from, to, dict) => {
   const iter = (curr, route) => {
     if (curr === to) {
       route.push(curr);
@@ -60,25 +66,11 @@ const getUpRoute = (from, to, dict) => {
   return iter(from, []);
 };
 
-const getDownRoute = (from, to, dict) => {
-  const iter = (curr, route) => {
-    if (curr === to) {
-      route.push(curr);
-      return route.reverse();
-    }
-    route.push(curr);
-    const [parent] = dict[curr];
-    return iter(parent, route);
-  };
-  return iter(from, []);
-};
-
 const itinerary = (tree, from, to) => {
-  const adjacencyList = {};
-  makeAdjacencyList(tree, adjacencyList);
+  const adjacencyList = getAdjacencyList(tree);
   const commonParent = getCommonParent(from, to, adjacencyList);
-  const upRoute = getUpRoute(from, commonParent, adjacencyList);
-  const downRoute = getDownRoute(to, commonParent, adjacencyList);
+  const upRoute = getRoute(from, commonParent, adjacencyList);
+  const downRoute = getRoute(to, commonParent, adjacencyList).reverse();
 
   return _.uniq([...upRoute, ...downRoute]);
 };
