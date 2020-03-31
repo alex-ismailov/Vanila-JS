@@ -1,4 +1,4 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 
 // const obj = {
 //   Moscow: [null, ['Smolensk', 'Yaroslavl', 'Voronezh', 'Ivanovo', 'Vladimir', 'Tver']],
@@ -21,46 +21,25 @@
 //   Rzhev: ['Tver', []],
 // };
 
-// const itinerary = (tree, dictionary, parent = null) => {
-//   return tree.reduce((acc, node) => {
-//     if (Array.isArray(node)) {
-//       return [...acc, itinerary(node)];
-//     }
-//     return [...acc, node];
-//   }, []);
-// };
-
-// const itinerary = (tree, dictionary, parent = null) => {
-//   return tree.reduce((acc, node) => {
-//     if (Array.isArray(node)) {
-//       return itinerary(node);
-//     }
-//     console.log(node);
-//     return ;
-//   }, []);
-// };
-
-const itinerary = (tree, dictionary, parent = null) => {
-  // const [node, children] = tree;
-  // return tree.reduce((acc, node));
-
-
-
-};
-
 const makeAdjacencyList = (tree, dict, parent = null) => {
   const [node, branches] = tree;
-  // console.log(branches);
   const children = [];
   dict[node] = [parent, children];
-  if (!branches) {
-    return node;
-  }
-  for (const branch of branches) {
-    const name = makeAdjacencyList(branch, dict, parent = node);
-    children.push(name);
+  if (branches) {
+    for (const branch of branches) {
+      const name = makeAdjacencyList(branch, dict, parent = node);
+      children.push(name);
+    }
   }
   return node;
+};
+
+const itinerary = (tree, from, to) => {
+  const route = [];
+  const adjacencyList = {};
+  makeAdjacencyList(tree, adjacencyList);
+
+  return adjacencyList;
 };
 
 /* testing */
