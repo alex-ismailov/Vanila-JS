@@ -1,4 +1,4 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 // const obj = {
 //   Moscow: [null, ['Smolensk', 'Yaroslavl', 'Voronezh', 'Ivanovo', 'Vladimir', 'Tver']],
@@ -21,28 +21,6 @@ import _ from 'lodash';
 //   Rzhev: ['Tver', []],
 // };
 
-const makeAdjacencyList = (tree, dict, parent = null) => {
-  const [node, branches] = tree;
-  const children = [];
-  dict[node] = [parent, children];
-  if (branches) {
-    for (const branch of branches) {
-      const name = makeAdjacencyList(branch, dict, parent = node);
-      children.push(name);
-    }
-  }
-  return node;
-};
-
-const itinerary = (tree, from, to) => {
-  const route = [];
-  const adjacencyList = {};
-  makeAdjacencyList(tree, adjacencyList);
-
-  return adjacencyList;
-};
-
-/* testing */
 const tree = ['Moscow', [
   ['Smolensk'],
   ['Yaroslavl'],
@@ -65,17 +43,76 @@ const tree = ['Moscow', [
   ]],
 ]];
 
+
+const makeAdjacencyList = (tree, dict, parent = null) => {
+  const [nodeName, branches] = tree;
+  const children = [];
+  dict[nodeName] = [parent, children];
+  if (branches) {
+    for (const branch of branches) {
+      const name = makeAdjacencyList(branch, dict, parent = nodeName);
+      children.push(name);
+    }
+  }
+  return nodeName;
+};
+
+const itinerary = (tree, from, to) => {
+  const adjacencyList = {};
+  makeAdjacencyList(tree, adjacencyList);
+  const commonParent = getCommonParent(from, to, adjacencyList);
+
+  // from, commonParent, to
+
+  return commonParent;
+};
+
+const getCommonParent = (first, second, dict, route) => {
+  const [parentName] = dict[first];
+  if (parentName === null) {
+    return first;
+  }
+  const parent = dict[parentName];
+  const [, parentChildren] = parent; 
+  if (parentChildren.includes(second)) {
+    return parentName;
+  }
+  return getCommonParent(parentName, second, dict);
+};
+
+/* good */
+// const getCommonParent = (first, second, dict) => {
+//   const [parentName] = dict[first];
+//   if (parentName === null) {
+//     return first;
+//   }
+//   const parent = dict[parentName];
+//   const [, parentChildren] = parent; 
+//   if (parentChildren.includes(second)) {
+//     return parentName;
+//   }
+//   return getCommonParent(parentName, second, dict);
+// };
+// ************
+
+
 /* testing */
 // console.log(tree);
 // console.log(itinerary(tree, {}));
 
-const flat = {};
-makeAdjacencyList(tree, flat);
-console.log(flat);
+// const flatTree = {};
+// makeAdjacencyList(tree, flatTree);
 
-// itinerary(tree, 'Dubna', 'Kostroma');
+// console.log(getCommonParent('Borisovka', 'Kurchatov', flatTree));
+// console.log(getCommonParent('Dubna', 'Kostroma', flatTree));
+
+
+// console.log(flatTree.Borisovka);
+// console.log(flatTree.Kurchatov);
+
+console.log(itinerary(tree, 'Dubna', 'Kostroma'));
 // ['Dubna', 'Tver', 'Moscow', 'Ivanovo', 'Kostroma']
 
-// itinerary(tree, 'Borisovka', 'Kurchatov');
+console.log(itinerary(tree, 'Borisovka', 'Kurchatov'));
 // ['Borisovka', 'Belgorod', 'Kursk', 'Kurchatov']
 
