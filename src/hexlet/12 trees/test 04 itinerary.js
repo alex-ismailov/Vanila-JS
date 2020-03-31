@@ -1,4 +1,4 @@
-// import _ from 'lodash';
+import _ from 'lodash';
 
 // const obj = {
 //   Moscow: [null, ['Smolensk', 'Yaroslavl', 'Voronezh', 'Ivanovo', 'Vladimir', 'Tver']],
@@ -80,10 +80,21 @@ const getUpRoute = (from, to, dict) => {
     const [parent] = dict[from];
     return iter(parent, to, route);
   };
-
   return iter(from, to, []);
 };
 
+const getDownRoute = (from, to, dict) => {
+  const iter = (from, to, route) => {
+    if (from === to) {
+      route.push(from);
+      return route.reverse();
+    }
+    route.push(from);
+    const [parent] = dict[from];
+    return iter(parent, to, route);
+  };
+  return iter(from, to, []); 
+};
 const itinerary = (tree, from, to) => {
   const adjacencyList = {};
   makeAdjacencyList(tree, adjacencyList);
@@ -91,10 +102,11 @@ const itinerary = (tree, from, to) => {
 
   // from -> commonParent -> to
   const upRoute = getUpRoute(from, commonParent, adjacencyList);
-  // const downRoute = getDownRoute();
+  const downRoute = getDownRoute(to, commonParent, adjacencyList);
 
-  // return [...upRoute, ...downRoute];
-  return upRoute;
+  return _.uniq([...upRoute, ...downRoute]);
+  // return upRoute;
+  // return downRoute;
 };
 
 /* good */
@@ -126,14 +138,8 @@ const itinerary = (tree, from, to) => {
 // console.log(flatTree.Borisovka);
 // console.log(flatTree.Kurchatov);
 
-// console.log(itinerary(tree, 'Dubna', 'Kostroma'));
+console.log(itinerary(tree, 'Dubna', 'Kostroma'));
 // ['Dubna', 'Tver', 'Moscow', 'Ivanovo', 'Kostroma']
 
 console.log(itinerary(tree, 'Borisovka', 'Kurchatov'));
 // ['Borisovka', 'Belgorod', 'Kursk', 'Kurchatov']
-
-// const flatTree = {};
-// makeAdjacencyList(tree, flatTree);
-// const res = getUpRoute('Dubna', 'Moscow', flatTree);
-// console.log(res);
-
