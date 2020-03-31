@@ -57,17 +57,7 @@ const makeAdjacencyList = (tree, dict, parent = null) => {
   return nodeName;
 };
 
-const itinerary = (tree, from, to) => {
-  const adjacencyList = {};
-  makeAdjacencyList(tree, adjacencyList);
-  const commonParent = getCommonParent(from, to, adjacencyList);
-
-  // from, commonParent, to
-
-  return commonParent;
-};
-
-const getCommonParent = (first, second, dict, route) => {
+const getCommonParent = (first, second, dict) => {
   const [parentName] = dict[first];
   if (parentName === null) {
     return first;
@@ -78,6 +68,33 @@ const getCommonParent = (first, second, dict, route) => {
     return parentName;
   }
   return getCommonParent(parentName, second, dict);
+};
+
+const getUpRoute = (from, to, dict) => {
+  const iter = (from, to, route) => {
+    if (from === to) {
+      route.push(from);
+      return route;
+    }
+    route.push(from);
+    const [parent] = dict[from];
+    return iter(parent, to, route);
+  };
+
+  return iter(from, to, []);
+};
+
+const itinerary = (tree, from, to) => {
+  const adjacencyList = {};
+  makeAdjacencyList(tree, adjacencyList);
+  const commonParent = getCommonParent(from, to, adjacencyList);
+
+  // from -> commonParent -> to
+  const upRoute = getUpRoute(from, commonParent, adjacencyList);
+  // const downRoute = getDownRoute();
+
+  // return [...upRoute, ...downRoute];
+  return upRoute;
 };
 
 /* good */
@@ -100,8 +117,7 @@ const getCommonParent = (first, second, dict, route) => {
 // console.log(tree);
 // console.log(itinerary(tree, {}));
 
-// const flatTree = {};
-// makeAdjacencyList(tree, flatTree);
+
 
 // console.log(getCommonParent('Borisovka', 'Kurchatov', flatTree));
 // console.log(getCommonParent('Dubna', 'Kostroma', flatTree));
@@ -110,9 +126,14 @@ const getCommonParent = (first, second, dict, route) => {
 // console.log(flatTree.Borisovka);
 // console.log(flatTree.Kurchatov);
 
-console.log(itinerary(tree, 'Dubna', 'Kostroma'));
+// console.log(itinerary(tree, 'Dubna', 'Kostroma'));
 // ['Dubna', 'Tver', 'Moscow', 'Ivanovo', 'Kostroma']
 
 console.log(itinerary(tree, 'Borisovka', 'Kurchatov'));
 // ['Borisovka', 'Belgorod', 'Kursk', 'Kurchatov']
+
+// const flatTree = {};
+// makeAdjacencyList(tree, flatTree);
+// const res = getUpRoute('Dubna', 'Moscow', flatTree);
+// console.log(res);
 
