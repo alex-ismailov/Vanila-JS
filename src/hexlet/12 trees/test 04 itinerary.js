@@ -26,8 +26,8 @@ const makeAdjacencyList = (tree, dict, parent = null) => {
   const children = [];
   dict[nodeName] = [parent, children];
   if (branches) {
-    branches.map((branch) => {
-      const name = makeAdjacencyList(branch, dict, parent = nodeName);
+    branches.forEach((branch) => {
+      const name = makeAdjacencyList(branch, dict, nodeName);
       children.push(name);
     });
   }
