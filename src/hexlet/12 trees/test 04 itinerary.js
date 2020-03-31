@@ -26,10 +26,10 @@ const makeAdjacencyList = (tree, dict, parent = null) => {
   const children = [];
   dict[nodeName] = [parent, children];
   if (branches) {
-    branches.map((branch) => {
+    for (const branch of branches) {
       const name = makeAdjacencyList(branch, dict, parent = nodeName);
       children.push(name);
-    });
+    }
   }
   return nodeName;
 };
@@ -48,29 +48,29 @@ const getCommonParent = (first, second, dict) => {
 };
 
 const getUpRoute = (from, to, dict) => {
-  const iter = (from, to, route) => {
-    if (from === to) {
-      route.push(from);
+  const iter = (curr, route) => {
+    if (curr === to) {
+      route.push(curr);
       return route;
     }
-    route.push(from);
-    const [parent] = dict[from];
-    return iter(parent, to, route);
+    route.push(curr);
+    const [parent] = dict[curr];
+    return iter(parent, route);
   };
-  return iter(from, to, []);
+  return iter(from, []);
 };
 
 const getDownRoute = (from, to, dict) => {
-  const iter = (from, to, route) => {
-    if (from === to) {
-      route.push(from);
+  const iter = (curr, route) => {
+    if (curr === to) {
+      route.push(curr);
       return route.reverse();
     }
-    route.push(from);
-    const [parent] = dict[from];
-    return iter(parent, to, route);
+    route.push(curr);
+    const [parent] = dict[curr];
+    return iter(parent, route);
   };
-  return iter(from, to, []);
+  return iter(from, []);
 };
 
 const itinerary = (tree, from, to) => {
