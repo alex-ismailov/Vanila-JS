@@ -70,7 +70,7 @@ const getCommonParent = (first, second, dict) => {
   return getCommonParent(parentName, second, dict);
 };
 
-const getUpRoute = (from, to, dict) => {
+const getRoute = (from, to, dict) => {
   const iter = (from, to, route) => {
     if (from === to) {
       route.push(from);
@@ -83,61 +83,17 @@ const getUpRoute = (from, to, dict) => {
   return iter(from, to, []);
 };
 
-const getDownRoute = (from, to, dict) => {
-  const iter = (from, to, route) => {
-    if (from === to) {
-      route.push(from);
-      return route.reverse();
-    }
-    route.push(from);
-    const [parent] = dict[from];
-    return iter(parent, to, route);
-  };
-  return iter(from, to, []); 
-};
 const itinerary = (tree, from, to) => {
   const adjacencyList = {};
   makeAdjacencyList(tree, adjacencyList);
   const commonParent = getCommonParent(from, to, adjacencyList);
-
-  // from -> commonParent -> to
-  const upRoute = getUpRoute(from, commonParent, adjacencyList);
-  const downRoute = getDownRoute(to, commonParent, adjacencyList);
+  const upRoute = getRoute(from, commonParent, adjacencyList);
+  const downRoute = getRoute(to, commonParent, adjacencyList);
 
   return _.uniq([...upRoute, ...downRoute]);
-  // return upRoute;
-  // return downRoute;
 };
 
-/* good */
-// const getCommonParent = (first, second, dict) => {
-//   const [parentName] = dict[first];
-//   if (parentName === null) {
-//     return first;
-//   }
-//   const parent = dict[parentName];
-//   const [, parentChildren] = parent; 
-//   if (parentChildren.includes(second)) {
-//     return parentName;
-//   }
-//   return getCommonParent(parentName, second, dict);
-// };
-// ************
-
-
 /* testing */
-// console.log(tree);
-// console.log(itinerary(tree, {}));
-
-
-
-// console.log(getCommonParent('Borisovka', 'Kurchatov', flatTree));
-// console.log(getCommonParent('Dubna', 'Kostroma', flatTree));
-
-
-// console.log(flatTree.Borisovka);
-// console.log(flatTree.Kurchatov);
-
 console.log(itinerary(tree, 'Dubna', 'Kostroma'));
 // ['Dubna', 'Tver', 'Moscow', 'Ivanovo', 'Kostroma']
 
