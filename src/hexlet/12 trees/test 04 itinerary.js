@@ -1,26 +1,5 @@
 import _ from 'lodash';
 
-// const obj = {
-//   Moscow: [null, ['Smolensk', 'Yaroslavl', 'Voronezh', 'Ivanovo', 'Vladimir', 'Tver']],
-//   Smolensk: ['Mscow', []],
-//   Yaroslavl: ['Moscow', []],
-//   Voronezh: ['Moscow', ['Liski', 'Boguchar', 'Kursk']],
-//   Liski: ['Voronezh', []],
-//   Boguchar: ['Voronezh', []],
-//   Kursk: ['Voronezh', ['Belgorod', 'Kurchatov']],
-//   Belgorod: ['Kursk', ['Borisovka']],
-//   Borisovka: ['Belgorod', []],
-//   Kurchatov: ['Kursk', []],
-//   Ivanovo: ['Moscow', ['Kostroma', 'Kineshma']],
-//   Kostroma: ['Ivanovo', []],
-//   Kineshma: ['Ivanovo', []],
-//   Vladimir: ['Moscow', []],
-//   Tver: ['Moscow', ['Klin', 'Dubna', 'Rzhev']],
-//   Klin: ['Tver', []],
-//   Dubna: ['Tver', []],
-//   Rzhev: ['Tver', []],
-// };
-
 const getAdjacencyList = (tree) => {
   const adjacencyList = {};
   const makeAdjacencyList = (currTree, dict, parent = null) => {
