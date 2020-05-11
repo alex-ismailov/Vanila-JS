@@ -35,7 +35,7 @@ obj1.setName('martin');
 obj2.setName('mike');
 
 console.log(`obj1.name: ${obj1.name}`);
-console.log(`obj1.name: ${obj2.name}`);
+console.log(`obj2.name: ${obj2.name}`);
 
 /* ****************** */
 /* Стрелочные функции */
@@ -55,3 +55,27 @@ const node2 = makeNode2('table2');
 /* TypeError: Cannot read property 'name' of undefined */
 // console.log(node2.getName());
 
+
+/* ********************** */
+/* Почти класс (имитация) */
+
+function Node(name) {
+  this.name = name;
+  this.getName = function getName() {
+    return this.name;
+  }
+}
+
+const node = new Node('div');
+console.log(node.name); // div
+
+/* ************ */
+/* Наследование */
+function PairedNode (name, body) {
+  Node.apply(this, [name]);
+  this.body = body;
+}
+
+const node3 = new PairedNode('div', 'body');
+console.log(node3.getName()); // div
+console.log(node3.body); // body
