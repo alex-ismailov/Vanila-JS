@@ -1,0 +1,1 @@
+                              test data from: src/hexlet/17 Asynchronous programming/fileWithtrim.txt                              
