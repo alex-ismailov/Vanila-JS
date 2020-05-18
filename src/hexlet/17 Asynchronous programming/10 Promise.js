@@ -6,8 +6,8 @@ export const copy = (src, dest) => {
 };
 
 const show = (src) => fs.readFile(src, 'utf-8').then((content) => console.log(content));
-const src = 'src/hexlet/17 Asynchronous programming/myfile.txt';
-const dest = 'src/hexlet/17 Asynchronous programming/newMyfile.txt';
+const src = 'src/hexlet/17 Asynchronous programming/test files/myfile.txt';
+const dest = 'src/hexlet/17 Asynchronous programming/test files/newMyfile.txt';
 show(src);
 
 // Тот же код в более короткой записи
