@@ -10,4 +10,6 @@ const readFileWithTrim = (filepath, cb) => {
   });
 };
 
-readFileWithTrim('src/hexlet/17 Asynchronous programming/fileWithtrim.txt', (_error, data) => console.log(data.trim()));
+const src = 'src/hexlet/17 Asynchronous programming/test files/fileWithtrim.txt';
+
+readFileWithTrim(src, (_error, data) => console.log(data));
