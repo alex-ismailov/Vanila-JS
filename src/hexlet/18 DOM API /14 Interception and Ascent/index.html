@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #div1,
+    #div2 {
+      height: 500px;
+      width: 500px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: indianred;
+    }
+
+    #div2 {
+      background-color: goldenrod;
+    }
+
+    button {
+      height: 50px;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id="div1">
+    <button>Send</button>
+  </div>
+  <div id="div2">
+    <button>Send2</button>
+  </div>
+
+  <script>
+    /* Погружение (Capturing) */
+    const div2 = document.querySelector('#div2');
+    const button2 = document.querySelector('#div2 button');
+    button2.addEventListener('click', () => alert('Boom 1!'), true);
+    div2.addEventListener('click', () => alert('Boom 2!'), true);
+
+    /* Всплытие (Bubbling) */
+    const div = document.querySelector('#div1');
+    const button = document.querySelector('#div1 button');
+    button.addEventListener('click', () => alert('Boom 1!'));
+    div.addEventListener('click', () => alert('Boom 2!'));
+  </script>
+</body>
+</html>
