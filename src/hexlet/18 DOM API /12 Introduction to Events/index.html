@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #btn {
+      height: 40px;
+      width: 60px;
+    }
+
+    #divBlock {
+      background-color: yellowgreen;
+      margin-top: 15px;
+      height: 40px;
+      width: 100px;
+    }
+
+    #myButton,
+    #myElement {
+      height: 40px;
+      width: 150px;
+      background-color: goldenrod;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <button id="btn" onclick="alert('Бум!')">Push me</button>
+  <div id="divBlock" onclick="alert(this.innerHTML)">
+    <p>Бум! in div <i>block</i></p>
+  </div>
+  <button id="myButton">myButton</button>
+  <script>
+    const button = document.getElementById('myButton');
+    button.addEventListener('click', () => alert('Boom 1!'));
+    const handler = () => alert('Boom 2 from handler!!');
+    button.addEventListener('click', handler);
+    // button.removeEventListener('click', handler);
+  </script>
+
+  <button id="myElement">myElement text</button>
+  <script>
+    const button2 = document.getElementById('myElement');
+    button2.addEventListener('click', e => alert(e.target.textContent));
+    button2.addEventListener('click', e => alert(e.type));
+  </script>
+
+  <a href="https://google.com" id="myLink">Переход по ссылке не произойдет</a>
+  <script>
+    const a = document.getElementById('myLink');
+
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert(e.target.textContent);
+    });
+  </script>
+
+  <!-- Иногда вы можете встретить такой код: -->
+  <!-- <a href="#" id="myElement" onclick="alert('hey'); return false;">Бум!</a> -->
+  <!-- Возврат false внутри значения атрибута, приводит к такому же эффекту. -->
+
+  <!-- Действиями по умолчанию обладают следующие элементы: -->
+  <!-- Клик по ссылке приводит к переходу на страницу указанную в href атрибуте.
+  Клик на кнопку с типом submit начинает отправку формы на сервер.
+  Вращение колесом мышки в textarea передвигает текст если он не помещается
+  Вызов контекстного меню с помощью правого клика мышки -->
+</body>
+</html>
