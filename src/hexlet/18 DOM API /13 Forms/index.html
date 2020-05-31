@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>forms</title>
+</head>
+<body>
+  <form id="myForm" method="post">
+    <input name="email" value="example@example.com">
+    <input name="password" value="supersecret">
+    <input type="submit" value="Sign Up">
+  </form>
+
+  <form id="myForm2" method="post">
+    <input name="email" value="example@example.com">
+    <input name="password" value="supersecret">
+    <input type="submit" value="Sign Up">
+  </form>
+  <script>
+    const myForm = document.querySelector('#myForm');
+    myForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Правильный способ
+      // Данные формы извлекаются из DOM автоматически 
+      const formData = new FormData(e.target); // На вход передается элемент формы взятый из события!
+      // Теперь с ними можно работать
+      formData.get('email'); // example@example.com
+      // values() возвращает итератор, поэтому преобразуем в массив
+      [...formData.values()]; // ['example@example.com', 'supersecret']
+      [...formData.keys()]; // ["email", "password"]
+      // Тоже итератор
+      [...formData.entries()]; // [['email', 'example@example.com'], ['password', 'supersecret']]
+      
+
+      // Преобразование в обычный объект
+      Object.fromEntries(formData); // { email: 'example@example.com', password: 'supersecret' }
+    });
+
+    /* Иногда, все же, приходится обращаться к элементам формы напрямую.
+    Например при реализации валидации во время изменения формы, а не ее отправки. */
+    /* Если элементов много, то код, выполняющий запросы в DOM, станет громоздким.
+    Этого можно избежать если использовать возможности DOM относящиеся к формам.
+    Каждая форма, содержит свойство elements, которое возвращает объект cо всеми элементами данной формы.
+    Ключи объекта – имена элементов, значения – сами элементы. */
+
+    const form = document.querySelector('#myForm2');
+    console.log(form.elements.email); // <input name="email" ...
+    console.log(form.elements.password); // <input name="password" ...
+
+    // Обработка
+    form.elements.email.addEventListener('change', () => {
+      alert(form.elements.email.value);
+      alert(form.elements.password.value);
+    });
+
+  </script>
+</body>
+</html>
