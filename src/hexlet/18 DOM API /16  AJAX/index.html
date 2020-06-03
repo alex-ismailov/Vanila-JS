@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <ul>
+    <li id="li1"></li>
+    <li id="li2"></li>
+  </ul>
+
+  <script>
+    // const data = {
+    //   "data1": "data1 for list input 1",
+    //   "data2": "data2 for list input 1"
+    // };
+
+    // fetch('data.json')
+    //   .then((response) => {
+    //     console.log(response.status); // => 200
+    //     console.log(response.headers.get('Content-Type'));
+    //     return response.json();
+    //   });
+
+    const url = new URL('../cats', 'http://www.example.com/dogs');
+    console.log(url);
+    console.log(url.hostname); // => www.example.com
+    console.log(url.pathname); // => /cats
+    url.hash = 'tabby';
+    console.log(url.href); // => http://www.example.com/cats#tabby
+
+    url.pathname = 'démonstration.html';
+    console.log(url.href); // => http://www.example.com/d%C3%A9monstration.html
+  </script>
+</body>
+</html>
