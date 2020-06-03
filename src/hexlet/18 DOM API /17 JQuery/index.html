@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./script.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: tomato;
+      height: 150px;
+    }
+    #block1,
+    #block2 {
+      height: 50px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #block1 {
+      background-color: yellow;
+    }
+    #block2 {
+      background-color: seagreen;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="block1">Block 1</div>
+    <div id="block2">Block 2</div>
+  </div>
+
+  <script>
+    $('#block1').click((e) => alert(e.target.textContent));
+    $('#block2').click((e) => {
+      $('#block2').hide();
+      const showBlock = () => $('#block2').show();
+      setTimeout(showBlock, 1000)
+    });
+    $('.container').on('click', () => {
+      $('.container').slideUp(2000).slideDown(2000);
+    });
+  </script>
+</body>
+</html>
