@@ -13,6 +13,7 @@
   "devDependencies": {
     "@babel/core": "^7.7.4",
     "@babel/node": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.10.1",
     "@babel/preset-env": "^7.7.4",
     "@hexlet/immutable-fs-trees": "^0.5.0",
     "@hexlet/pairs-data": "^1.0.9",
@@ -22,6 +23,7 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "intelli-espower-loader": "^1.0.1",
+    "jest": "^26.0.1",
     "lodash": "^4.17.15",
     "power-assert": "^1.6.1"
   },
