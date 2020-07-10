@@ -1,0 +1,10 @@
+extends layout.pug
+
+append scripts
+  script(src='/pets.js')
+
+block content
+  h1= title
+  - const pets = ['cat', 'dog']
+  each petName in pets
+    h2= petName
