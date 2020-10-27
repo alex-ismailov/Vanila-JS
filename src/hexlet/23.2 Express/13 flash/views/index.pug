@@ -1,0 +1,13 @@
+extends layouts/app.pug
+
+block content
+  .row.mt-3
+    .col-sm-4.mx-auto
+      h3.text-xs-center Choose box
+      form(action="/page" method='get')
+        - const items = ['info', 'success', 'warning'];
+        for item in items
+          .form-check
+            input.form-check-input(type="radio" name=`item` value=`${item}`)
+            label.form-check-label(for=`${item}`)= item
+        button.btn.btn-success.btn-block(type='submit') Send
