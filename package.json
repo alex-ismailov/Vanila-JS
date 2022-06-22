@@ -30,7 +30,7 @@
     "power-assert": "^1.6.1"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.2",
     "axios": "^0.19.2",
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
